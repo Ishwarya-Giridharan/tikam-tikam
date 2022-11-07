@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production')
 	pgp.pg.defaults.ssl = true;
 
 //process.env.DATABASE_URL || postgres://postgres:ig53614@localhost:5432/tikam	
-var db = pgp('postgres://igipgrycufpein:c01a1b0f21d45d356834987ccd27eb0a14dba38c76db343f2027e13896f6e674@ec2-52-23-131-232.compute-1.amazonaws.com:5432/dei4c1mj92iu8b');
+var db = pgp('postgres://igipgrycufpein:c01a1b0f21d45d356834987ccd27eb0a14dba38c76db343f2027e13896f6e674@ec2-52-23-131-232.compute-1.amazonaws.com:5432/dei4c1mj92iu8b?sslmode=no-verify');
 
 let sql = (file) => {
     const fullPath = path.join(__dirname, '/sql/', file);
@@ -46,7 +46,7 @@ let sqlGetAllFrozenSlotsInfo = sql('summary/getAllFrozenSlotsInfo.sql');
 exports.initialize = () =>
 	Promise
 		.resolve()
-		.then(() => console.log("Initializing database... " + db.$config))
+		.then(() => console.log("Initializing database... " + db))
 		.then(() => db.none(sqlCreateTableBiddingstatus))
 		.then(() => console.log("Created table Bidding status"))
 		.then(() => db.none(sqlCreateTableUsers))
