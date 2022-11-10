@@ -1,0 +1,1 @@
+UPDATE  public.biddingstatus SET biddingclosed=true  WHERE slot=1;
